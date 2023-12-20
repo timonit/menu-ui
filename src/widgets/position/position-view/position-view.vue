@@ -20,7 +20,7 @@ const emit = defineEmits<{
       <PositionViewPrice :categoryID="props.categoryID" :position="props.position" @changed="emit('updated', props.position.id)" />
       <PositionViewIngredients :categoryID="props.categoryID" :position="props.position" @changed="emit('updated', props.position.id)" />
       
-      <RemovePositionFromCategory :categoryID="props.categoryID" :positionID="props.position.id" />
+      <RemovePositionFromCategory :categoryID="props.categoryID" :positionID="props.position.id" @executed="emit('removed', props.position.id)" />
     </div>
     
     <PositionViewPhoto

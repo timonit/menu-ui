@@ -32,7 +32,7 @@ const emit = defineEmits<{(e: 'update:show', v: boolean): void}>();
       <props.triggerComponent class="switcher__trigger" @click="emit('update:show', true)" />
     </template>
     <ButtonApp v-if="!props.triggerComponent && !props.show" class="switcher__trigger" :label="props.triggerLabel" @click="emit('update:show', true)" />
-    <ButtonApp v-if="props.show" :label="props.cancelLabel" @click="emit('update:show', false)" />
+    <ButtonApp v-if="props.show" class="bg-danger" :label="props.cancelLabel" @click="emit('update:show', false)" />
   </div>
 </template>
 

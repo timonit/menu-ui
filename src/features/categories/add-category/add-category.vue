@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import { FormApp, FormControl, CategoryAPI, ButtonApp } from '@/shared';
+import { useCategories } from '@/entities';
+import { FormApp, FormControl, ButtonApp } from '@/shared';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const form = ref({
   name: '',
   description: '',
 });
+const router = useRouter();
+const categoryStore = useCategories();
 
 const addCategory = async () => {
-  const api = new CategoryAPI();
-  await api.create({
-    ...form.value,
-    positions: [],
-  });
+  await categoryStore.addCategory({...form.value, positions: []});
+  router.push('/');
 };
 </script>
 

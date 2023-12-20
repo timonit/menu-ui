@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { SwitchContent, EditBadge, type CategoryDTO, ButtonApp } from '@/shared';
 import { ChangeDescription } from '@/features';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps<{category: CategoryDTO}>();
 const emit = defineEmits<{(e: 'changed'): void}>();
 
 const showForm = ref(false);
+
+watch(props, () => {
+  showForm.value = false;
+})
 </script>
 
 <template>

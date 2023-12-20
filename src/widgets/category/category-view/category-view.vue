@@ -5,16 +5,21 @@ import CategoryViewPositionList from './category-view__position-list.vue';
 import { ButtonApp, CategoryAPI, type CategoryDTO } from '@/shared';
 import { AddPositionToCategory, RemoveCategory } from '@/features';
 import { onBeforeMount, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useCategories } from '@/entities';
 
 const props = defineProps<{categoryID: string}>();
+const router = useRouter();
 
 const category = ref<CategoryDTO | undefined>();
 const showAddPositionForm = ref(false);
+const categoryStore = useCategories();
 
 const fetchCategory = async () => {
   const api = new CategoryAPI();
   category.value = await api.getByID(props.categoryID as string);
   showAddPositionForm.value = false;
+  categoryStore.fetchCategories();
 }
 
 onBeforeMount(async () => {
@@ -24,6 +29,10 @@ onBeforeMount(async () => {
 const toggleShowAddPositionForm = () => {
   showAddPositionForm.value = !showAddPositionForm.value
 }
+
+const goHome = () => {
+  router.push('/');
+}
 </script>
 
 <template>
@@ -31,12 +40,12 @@ const toggleShowAddPositionForm = () => {
   <div v-if="category" class="category-view bg-dark flex flex-col gap-medium shadow-center items-start">
     <div class="flex w-full items-center justify-between">
       <CategoryViewName :category="category" @changed="fetchCategory" />
-      <RemoveCategory :id="props.categoryID" />
+      <RemoveCategory :id="props.categoryID" @executed="goHome" />
     </div>
 
     <CategoryViewDescription class="w-full" :category="category" @changed="fetchCategory" />
 
-    <div class="flex gap-medium items-start flex-wrap">
+    <div class="flex gap-medium items-start flex-wrap w-full">
       <ButtonApp label="Добавить позицию" @click="toggleShowAddPositionForm" />
       <AddPositionToCategory
         v-show="showAddPositionForm"
