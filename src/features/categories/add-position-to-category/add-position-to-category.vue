@@ -30,11 +30,22 @@ const submitHandler = async (event: Event) => {
 </script>
 
 <template>
-  <FormApp @submit="submitHandler">
-    <FormControl v-model="form.name" label="name" />
-    <FormControl v-model="form.price" label="price" type="number" />
-    <FormControl v-model="form.ingredients" label="ingredients" />
-    <FormControl v-model="form.photo" label="photo" />
-    <ButtonApp label="Add" type="submit" />
+  <FormApp class="add-position-to-category" @submit="submitHandler">
+    <label class="form__label form__label_size_md">Добавить позицию</label>
+    <FormControl class="form__form-control_spacing" v-model="form.name" label="Название позиции" placeholder="Введите название позиции" />
+    <FormControl class="form__form-control_spacing" v-model="form.price" label="Цена" placeholder="Введите цену" type="number" />
+    <FormControl class="form__form-control_spacing" v-model="form.ingredients" label="Ингредиенты" placeholder="Введите ингредиенты через запятую (лук, морковь, кортошка и т. д.)" />
+    <FormControl class="form__form-control_spacing" v-model="form.photo" label="Фото" placeholder="Вставьте ссылку на изображение" />
+
+    <div class="button-tools button-tools_align_end">
+      <ButtonApp label="Добавить" type="submit" />
+    </div>
   </FormApp>
 </template>
+
+<style src="@/shared/ui/form/form.scss"></style>
+<style scoped lang="scss">
+.add-position-to-category {
+
+}
+</style>

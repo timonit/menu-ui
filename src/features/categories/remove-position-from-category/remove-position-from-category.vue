@@ -16,5 +16,5 @@ const handler = async (event: Event) => {
 </script>
 
 <template>
-  <ButtonApp style="background: red" label="Delete" @click="handler" />
+  <ButtonApp style="background: red" label="Удалить позицию" @click="handler" />
 </template>

@@ -21,6 +21,9 @@
   padding: 1em;
   background-color: var(--background-color);
   justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
   .header_wrapper {
     width: 1024px;

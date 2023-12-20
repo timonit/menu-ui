@@ -26,7 +26,7 @@ export class PositionAPI extends API<PositionDTO> {
 
   async changePrice(id: string, price: number): Promise<number> {
     const result = await this.query<{price: number}, {price: number}>({
-      url: `${this.path}/${id}/ingredients`,
+      url: `${this.path}/${id}/price`,
       data: { price },
       method: 'PATCH'
     })

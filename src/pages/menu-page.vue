@@ -3,7 +3,7 @@ import { CategoryList } from '@/entities/categories';
 </script>
 
 <template>
-  <div class="menu page menu-page">
+  <div class="page menu-page">
     <CategoryList />
   </div>
 </template>

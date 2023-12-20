@@ -52,10 +52,12 @@ const emit = defineEmits<{(e: 'update:modelValue', v: any): void}>()
   }
 
   .form-control__input {
-    all: unset;
+    outline: none;
+    color: var(--text-color);
     width: 100%;
     background: transparent;
     border: none;
+    line-height: 1.8em;
     border-bottom: solid 2px white;
 
     &::placeholder {
@@ -64,6 +66,7 @@ const emit = defineEmits<{(e: 'update:modelValue', v: any): void}>()
   }
 
   .form-control__textarea {
+    color: var(--text-color);
     width: 100%;
     background: transparent;
     border: solid 2px white;
