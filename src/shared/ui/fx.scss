@@ -1,0 +1,11 @@
+.shadow-down {
+  box-shadow: 0 5px 5px rgba($color: #000000, $alpha: 0.3);
+}
+
+.shadow-center {
+  box-shadow: 0 0 10px rgba($color: #000000, $alpha: .8);
+}
+
+.shadow-up {
+  box-shadow: 0 -5px 5px rgba($color: #000000, $alpha: .3);
+}
