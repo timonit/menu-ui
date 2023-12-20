@@ -30,8 +30,20 @@
   justify-content: start;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
 .items-start {
   align-items: start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: end;
 }
 
 .flex-wrap {
@@ -40,6 +52,10 @@
 
 .flex-nowrap {
   flex-wrap: nowrap;
+}
+
+.gap-sm {
+  gap: 1rem;
 }
 
 .gap-medium {

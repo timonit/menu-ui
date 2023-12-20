@@ -22,7 +22,7 @@ const addCategory = async () => {
     <FormControl class="form__form-control_spacing" label="Название категории" placeholder="Напишите здесь название категории" v-model="form.name" />
     <FormControl class="form__form-control_spacing" label="Описание" placeholder="Описание" v-model="form.description" type="textarea" :rows="3" />
     <div class="button-tools button-tools_align_end">
-      <ButtonApp label="Add" type="submit" />
+      <ButtonApp label="Добавить" type="submit" />
     </div>
   </FormApp>
 </template>

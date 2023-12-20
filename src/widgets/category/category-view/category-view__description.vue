@@ -11,12 +11,13 @@ const showForm = ref(false);
 
 <template>
   <SwitchContent
-    class="category-view__description flex fieldset"
+    class="category-view__description flex items-start"
     v-model:show="showForm"
     :triggerComponent="EditBadge"
   >
       <p v-if="props.category.description" class="description_text">{{ props.category.description }}</p>
-      <ButtonApp @click="showForm=true" label="Добавить описание" />
+      <ButtonApp v-if="!props.category.description" @click="showForm=true" label="Добавить описание" />
+      
       <template #switch-content>
         <ChangeDescription
           :id="props.category.id"
@@ -29,7 +30,7 @@ const showForm = ref(false);
 
 <style scoped lang="scss">
 .category-view__description {
-
+  gap: .3em;
   .description_text {
     margin: 0;
     line-height: 1.4em;

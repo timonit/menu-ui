@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SetPositionIngredients } from '@/features';
-import { SwitchContent, EditBadge } from '@/shared';
+import { SwitchContent, EditBadge, ButtonApp } from '@/shared';
 import { type PositionDTO } from '@/shared';
 import { ref, watch } from 'vue';
 
@@ -8,6 +8,7 @@ const props = defineProps<{categoryID: string; position: PositionDTO}>();
 const emit = defineEmits<{(e:'changed'): void}>();
 
 const showForm = ref(false);
+console.log(props.position.ingredients)
 
 watch(props, () => {
   showForm.value = false;
@@ -16,7 +17,10 @@ watch(props, () => {
 
 <template>
   <SwitchContent class="fieldset" v-model:show="showForm" :triggerComponent="EditBadge">
-    <p class="fieldset__ingredients">{{ props.position.ingredients.join(', ') }}</p>
+    <p v-if="props.position.ingredients.length" class="fieldset__ingredients">{{ props.position.ingredients.join(', ') }}</p>
+    
+    <ButtonApp v-if="!props.position.ingredients.length" @click="showForm = true" label="Добавить ингредиенты" />
+
     <template #switch-content>
       <SetPositionIngredients
         :id="props.position.id"

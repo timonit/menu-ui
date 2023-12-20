@@ -10,7 +10,7 @@ const emit =defineEmits<{
 </script>
 
 <template>
-  <div class="category-view__position-list">
+  <div class="category-view__position-list w-full">
     <PositionView
       v-for="position in props.positions"
       :key="position.id"

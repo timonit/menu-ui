@@ -33,6 +33,7 @@ const props = defineProps<{ category: CategoryDTO; }>();
   gap: 2em;
 
   &:hover {
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: .8);
     background: var(--background-color);
     
     .category-list__item-title, .category-list__item-description {

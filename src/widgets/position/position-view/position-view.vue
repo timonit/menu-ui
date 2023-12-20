@@ -23,7 +23,11 @@ const emit = defineEmits<{
       <RemovePositionFromCategory :categoryID="props.categoryID" :positionID="props.position.id" />
     </div>
     
-    <PositionViewPhoto :categoryID="props.categoryID" :position="props.position" @changed="emit('updated', props.position.id)" />
+    <PositionViewPhoto
+      :categoryID="props.categoryID"
+      :position="props.position"
+      @changed="emit('updated', props.position.id)"
+    />
   </div>
 </template>
 

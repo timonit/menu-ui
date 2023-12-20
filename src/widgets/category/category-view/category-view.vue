@@ -3,7 +3,7 @@ import CategoryViewName from './category-view__name.vue';
 import CategoryViewDescription from './category-view__description.vue';
 import CategoryViewPositionList from './category-view__position-list.vue';
 import { ButtonApp, CategoryAPI, type CategoryDTO } from '@/shared';
-import { AddPositionToCategory } from '@/features';
+import { AddPositionToCategory, RemoveCategory } from '@/features';
 import { onBeforeMount, ref } from 'vue';
 
 const props = defineProps<{categoryID: string}>();
@@ -28,12 +28,16 @@ const toggleShowAddPositionForm = () => {
 
 <template>
   <h3 v-if="!category">Loading...</h3>
-  <div v-if="category" class="category-view bg-dark flex flex-col gap-medium shadow-center">
-    <CategoryViewName :category="category" @changed="fetchCategory" />
-    <CategoryViewDescription :category="category" @changed="fetchCategory" />
+  <div v-if="category" class="category-view bg-dark flex flex-col gap-medium shadow-center items-start">
+    <div class="flex w-full items-center justify-between">
+      <CategoryViewName :category="category" @changed="fetchCategory" />
+      <RemoveCategory :id="props.categoryID" />
+    </div>
+
+    <CategoryViewDescription class="w-full" :category="category" @changed="fetchCategory" />
 
     <div class="flex gap-medium items-start flex-wrap">
-      <ButtonApp label="Add position" @click="toggleShowAddPositionForm" />
+      <ButtonApp label="Добавить позицию" @click="toggleShowAddPositionForm" />
       <AddPositionToCategory
         v-show="showAddPositionForm"
         :categoryID="category.id"
