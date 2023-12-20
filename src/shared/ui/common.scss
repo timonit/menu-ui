@@ -29,3 +29,27 @@
 .text-bold {
   font-weight: 800;
 }
+
+.bg-success {
+  background-color: green;
+}
+
+.bg-danger {
+  background-color: red;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-disabled {
+  background-color: gray;
+}
+
+.text-light {
+  color: var(--text-color)
+}
+
+.text-dark {
+  color: var(--background-color)
+}

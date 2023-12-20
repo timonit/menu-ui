@@ -11,7 +11,10 @@ const emit = defineEmits<{(e: 'click', ev:any): void}>();
   <button
     :type="props.type"
     @click="emit('click', $event)"
+    class="button bg-success text-light text-medium"
   >
     {{ props.label }}
   </button>
 </template>
+
+<style src="./button.scss"></style>

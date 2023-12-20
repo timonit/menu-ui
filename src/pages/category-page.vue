@@ -11,3 +11,5 @@ const categoryID = route.params.categoryID;
     <CategoryView :categoryID="(categoryID as string)" />
   </main>
 </template>
+
+<style src="./page.scss"></style>

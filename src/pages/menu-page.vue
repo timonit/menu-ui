@@ -15,3 +15,5 @@ const { categories } = storeToRefs(categoryStore);
     </div>
   </div>
 </template>
+
+<style src="./page.scss"></style>
