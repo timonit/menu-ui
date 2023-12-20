@@ -7,7 +7,7 @@ const { categories } = storeToRefs(categoryStore);
 </script>
 
 <template>
-  <div class="menu">
+  <div class="menu page">
     <div v-for="category in categories" :key="category.id">
       <RouterLink
         :to="{name: 'category', params:{ categoryID: category.id } }"

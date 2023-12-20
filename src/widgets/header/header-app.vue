@@ -23,6 +23,7 @@
   .header__nav-link {
     color: rgb(250, 200, 150);
     text-decoration: none;
+    border-bottom: solid 2px transparent;
     
     &:hover, &.router-link-active {
       color: var(--main-color);
