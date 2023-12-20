@@ -1,12 +1,17 @@
+<script setup lang="ts">
+import { useCategories } from '@/entities/categories';
+import { storeToRefs } from 'pinia';
+
+const categoryStore = useCategories();
+const { categories } = storeToRefs(categoryStore);
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <h2>This is an about page</h2>
+  <div class="menu">
+    <div v-for="category in categories" :key="category.id">
+      <RouterLink
+        :to="{name: 'category', params:{ categoryID: category.id } }"
+      >{{ category.name }}</RouterLink>
+    </div>
   </div>
 </template>
-
-<style scoped>
-h2 {
-  color: var(--text-secondary-color);
-}
-</style>
