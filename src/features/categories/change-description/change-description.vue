@@ -13,7 +13,7 @@ const emit = defineEmits<{(e: 'executed', val: string): void}>();
 const form = ref({description: props.description});
 const error = ref();
 
-const submitHandler = formErrorHandler(async (event: Event) => {
+const submitHandler = formErrorHandler(error,async (event: Event) => {
   event.preventDefault();
 
   const api = new CategoryAPI();

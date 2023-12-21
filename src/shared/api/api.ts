@@ -2,7 +2,7 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios, { AxiosError } from 'axios';
 
 export abstract class API<DTO> {
-  baseURL = 'http://localhost:5000';
+  baseURL = import.meta.env.VITE_API_URL;
 
   static axios = axios.create();
 
