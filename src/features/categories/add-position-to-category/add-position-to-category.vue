@@ -21,7 +21,7 @@ const submitHandler = async (event: Event) => {
     {
       ...form.value,
       price: Number(form.value.price),
-      ingredients: form.value.ingredients.split(',')
+      ingredients: form.value.ingredients.trim() ? form.value.ingredients.split(',') : [],
     }
   );
 

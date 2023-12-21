@@ -15,7 +15,8 @@ const submitHandler = async (event: Event) => {
   event.preventDefault();
 
   const api = new PositionAPI();
-  const result = await api.setIngredients(props.id, form.value.ingredients.split(','));
+  const ingredients = form.value.ingredients.trim() ? form.value.ingredients.split(',') : [];
+  const result = await api.setIngredients(props.id, ingredients);
 
   emit('executed', result);
 }
