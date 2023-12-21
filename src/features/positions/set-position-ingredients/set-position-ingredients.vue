@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FormApp, FormControl, ButtonApp, PositionAPI } from '@/shared';
+import { formErrorHandler } from '@/shared/ui/form/utils';
 import { ref } from 'vue';
 
 const props = withDefaults(
@@ -10,8 +11,9 @@ const props = withDefaults(
 const emit = defineEmits<{(e: 'executed', val: string[]): void}>();
 
 const form = ref({ingredients: props.ingredients.join(', ')});
+const error = ref();
 
-const submitHandler = async (event: Event) => {
+const submitHandler = formErrorHandler(error, async (event: Event) => {
   event.preventDefault();
 
   const api = new PositionAPI();
@@ -19,11 +21,11 @@ const submitHandler = async (event: Event) => {
   const result = await api.setIngredients(props.id, ingredients);
 
   emit('executed', result);
-}
+})
 </script>
 
 <template>
-  <FormApp class="feature-form-horizontal" @submit="submitHandler">
+  <FormApp :error="error" class="feature-form-horizontal" @submit="submitHandler">
     <FormControl v-model="form.ingredients" placeholder="Введите ингредиенты через запятую (лук, морковь, кортошка и т. д.)" />
     <ButtonApp label="Сохранить" type="submit" />
   </FormApp>

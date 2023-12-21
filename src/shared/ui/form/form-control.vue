@@ -25,7 +25,11 @@ const emit = defineEmits<{(e: 'update:modelValue', v: any): void}>()
     <textarea
       v-if="props.type === 'textarea'"
       :value="modelValue"
-      @input="emit('update:modelValue', $event.target?.value)"
+      @input="emit(
+        'update:modelValue',
+        // @ts-ignore
+        $event.target?.value
+      )"
       :placeholder="props.placeholder"
       :rows="props.rows"
       class="form-control__textarea"
@@ -34,7 +38,11 @@ const emit = defineEmits<{(e: 'update:modelValue', v: any): void}>()
     <input
       v-else
       :value="modelValue"
-      @input="emit('update:modelValue', $event.target?.value)"
+      @input="emit(
+        'update:modelValue',
+        // @ts-ignore
+        $event.target?.value
+      )"
       :placeholder="props.placeholder"
       :type="props.type"
       class="form-control__input"

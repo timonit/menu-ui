@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useCategories } from '@/entities';
 import { FormApp, FormControl, ButtonApp } from '@/shared';
+import { formErrorHandler } from '@/shared/ui/form/utils';
+import { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -8,17 +10,18 @@ const form = ref({
   name: '',
   description: '',
 });
+const error = ref<string | undefined>();
 const router = useRouter();
 const categoryStore = useCategories();
 
-const addCategory = async () => {
+const addCategory = formErrorHandler(error, async () => {
   await categoryStore.addCategory({...form.value, positions: []});
   router.push('/');
-};
+});
 </script>
 
 <template>
-  <FormApp class="form_spacing form-add-category shadow-center" @submit="addCategory">
+  <FormApp :error="error" class="form_spacing form-add-category shadow-center" @submit="addCategory">
     <label class="form__label form__label_size_md form__label_align_center">Создание категории</label>
     <FormControl class="form__form-control_spacing" label="Название категории" placeholder="Напишите здесь название категории" v-model="form.name" />
     <FormControl class="form__form-control_spacing" label="Описание" placeholder="Описание" v-model="form.description" type="textarea" :rows="3" />
