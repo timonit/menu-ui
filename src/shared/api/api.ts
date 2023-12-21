@@ -1,20 +1,29 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export abstract class API<DTO> {
-  baseURL = 'http://localhost:5000';
+  baseURL = import.meta.env.VITE_API_URL;
 
   static axios = axios.create();
 
   abstract path: string;
 
-  query<T = any, D = any>(config: AxiosRequestConfig<D>): Promise<AxiosResponse<T, D>> {
+  async query<T = any, D = any>(config: AxiosRequestConfig<D>): Promise<AxiosResponse<T, D>> {
     const conf:AxiosRequestConfig = {
       ...config,
       baseURL: this.baseURL,
     };
 
-    return API.axios.request<T, AxiosResponse<T, D>, D>(conf);
+    try {
+      const result = await API.axios.request<T, AxiosResponse<T, D>, D>(conf);
+      return result;
+    } catch(err) {
+      if (err instanceof AxiosError && err.status == 403) {
+        console.log(err);
+        location.assign('/');
+      }
+      throw err;
+    }
   }
 
   async getAll(): Promise<DTO[]> {
