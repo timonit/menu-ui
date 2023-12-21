@@ -4,7 +4,7 @@ const props = withDefaults(
     label?: string;
     modelValue: any;
     placeholder?: string;
-    type?: 'text' | 'number' | 'url' | 'textarea';
+    type?: 'text' | 'number' | 'url' | 'textarea' | 'password';
     rows?: number;
   }>(),
   {

@@ -4,6 +4,8 @@ import axios from 'axios';
 export abstract class API<DTO> {
   baseURL = 'http://localhost:5000';
 
+  static axios = axios.create();
+
   abstract path: string;
 
   query<T = any, D = any>(config: AxiosRequestConfig<D>): Promise<AxiosResponse<T, D>> {
@@ -12,7 +14,7 @@ export abstract class API<DTO> {
       baseURL: this.baseURL,
     };
 
-    return axios.request<T, AxiosResponse<T, D>, D>(conf);
+    return API.axios.request<T, AxiosResponse<T, D>, D>(conf);
   }
 
   async getAll(): Promise<DTO[]> {
