@@ -3,12 +3,23 @@ import { defineStore } from 'pinia';
 
 const starageKey = 'tt'
 
+const setAuthHeaders = (token: string) => {
+  const interceptorID = UserAPI.axios.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
+  UserAPI.authInterceptorID = interceptorID;
+}
+
 export const useUser = defineStore('user', {
   state: () => {
     let isAuthorized = false;
 
     const savedToken = localStorage.getItem(starageKey);
-    if (savedToken) isAuthorized = true;
+    if (savedToken) {
+      isAuthorized = true;
+      setAuthHeaders(savedToken);
+    }
 
     return {
       isAuthorized,
@@ -19,12 +30,7 @@ export const useUser = defineStore('user', {
       const userAPI = new UserAPI();
       const token = await userAPI.login(loginDTO);
       localStorage.setItem(starageKey, token);
-      
-      const interceptorID = UserAPI.axios.interceptors.request.use((config) => {
-        config.headers.Authorization = `Bearer ${token}`;
-        return config;
-      });
-      userAPI.authInterceptorID = interceptorID;
+      setAuthHeaders(token);
       
       this.$state.isAuthorized = true;
     },
