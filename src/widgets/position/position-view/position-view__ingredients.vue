@@ -8,7 +8,6 @@ const props = defineProps<{categoryID: string; position: PositionDTO}>();
 const emit = defineEmits<{(e:'changed'): void}>();
 
 const showForm = ref(false);
-console.log(props.position.ingredients)
 
 watch(props, () => {
   showForm.value = false;

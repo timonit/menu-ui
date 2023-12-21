@@ -13,7 +13,8 @@ const userStore = useUser();
   
       <nav class="nav flex">
         <RouterLink class="header__nav-link text-medium" to="/">Меню</RouterLink>
-        <RouterLink class="header__nav-link text-medium" to="/add-category">Добавить категорию</RouterLink>
+
+        <RouterLink v-if="userStore.isAuthorized" class="header__nav-link text-medium" to="/add-category">Добавить категорию</RouterLink>
       </nav>
   
       <div class="header__block header__block_right">

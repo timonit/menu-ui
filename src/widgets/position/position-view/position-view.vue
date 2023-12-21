@@ -5,12 +5,15 @@ import PositionViewIngredients from './position-view__ingredients.vue';
 import PositionViewPhoto from './position-view__photo.vue';
 import { RemovePositionFromCategory } from '@/features';
 import { type PositionDTO } from '@/shared';
+import { useUser } from '@/entities';
 
 const props = defineProps<{categoryID: string; position: PositionDTO}>();
 const emit = defineEmits<{
   (e:'removed', positionID:string): void,
   (e:'updated', positionID:string): void,
 }>();
+
+const userStore = useUser();
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const emit = defineEmits<{
       <PositionViewPrice :categoryID="props.categoryID" :position="props.position" @changed="emit('updated', props.position.id)" />
       <PositionViewIngredients :categoryID="props.categoryID" :position="props.position" @changed="emit('updated', props.position.id)" />
       
-      <RemovePositionFromCategory :categoryID="props.categoryID" :positionID="props.position.id" @executed="emit('removed', props.position.id)" />
+      <RemovePositionFromCategory v-if="userStore.isAuthorized" :categoryID="props.categoryID" :positionID="props.position.id" @executed="emit('removed', props.position.id)" />
     </div>
     
     <PositionViewPhoto

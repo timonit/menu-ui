@@ -6,7 +6,7 @@ import { ButtonApp, CategoryAPI, type CategoryDTO } from '@/shared';
 import { AddPositionToCategory, RemoveCategory } from '@/features';
 import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useCategories } from '@/entities';
+import { useCategories, useUser } from '@/entities';
 
 const props = defineProps<{categoryID: string}>();
 const router = useRouter();
@@ -33,6 +33,8 @@ const toggleShowAddPositionForm = () => {
 const goHome = () => {
   router.push('/');
 }
+
+const userStore = useUser();
 </script>
 
 <template>
@@ -40,12 +42,12 @@ const goHome = () => {
   <div v-if="category" class="category-view bg-dark flex flex-col gap-medium shadow-center items-start">
     <div class="flex w-full items-center justify-between">
       <CategoryViewName :category="category" @changed="fetchCategory" />
-      <RemoveCategory :id="props.categoryID" @executed="goHome" />
+      <RemoveCategory v-if="userStore.isAuthorized" :id="props.categoryID" @executed="goHome" />
     </div>
 
     <CategoryViewDescription class="w-full" :category="category" @changed="fetchCategory" />
 
-    <div class="flex gap-medium items-start flex-wrap w-full">
+    <div v-if="userStore.isAuthorized" class="flex gap-medium items-start flex-wrap w-full">
       <ButtonApp label="Добавить позицию" @click="toggleShowAddPositionForm" />
       <AddPositionToCategory
         v-show="showAddPositionForm"
