@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useUser } from '@/entities';
 import { BadgeApp } from '..';
+
+const userStore = useUser();
 </script>
 
 <template>
-  <BadgeApp class="edit-badge" color="dark" title="Edit">
+  <BadgeApp v-if="userStore.isAuthorized" class="edit-badge" color="dark" title="Edit">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         xmlns="http://www.w3.org/2000/svg"

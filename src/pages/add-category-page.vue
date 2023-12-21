@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { useUser } from '@/entities';
 import { AddCategory } from '@/features';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const userStore = useUser();
+
+if (!userStore.isAuthorized) router.push('/');
 </script>
 
 <template>

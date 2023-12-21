@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FormApp, FormControl, ButtonApp, CategoryAPI } from '@/shared';
+import { formErrorHandler } from '@/shared/ui/form/utils';
 import { ref } from 'vue';
 
 const props = defineProps<{categoryID: string;}>();
@@ -11,8 +12,9 @@ const form = ref({
   photo: '',
   ingredients: '',
 });
+const error = ref();
 
-const submitHandler = async (event: Event) => {
+const submitHandler = formErrorHandler(error, async (event: Event) => {
   event.preventDefault();
 
   const api = new CategoryAPI();
@@ -21,16 +23,16 @@ const submitHandler = async (event: Event) => {
     {
       ...form.value,
       price: Number(form.value.price),
-      ingredients: form.value.ingredients.split(',')
+      ingredients: form.value.ingredients.trim() ? form.value.ingredients.split(',') : [],
     }
   );
 
   emit('executed', result);
-}
+})
 </script>
 
 <template>
-  <FormApp class="add-position-to-category" @submit="submitHandler">
+  <FormApp :error="error" class="add-position-to-category" @submit="submitHandler">
     <label class="form__label form__label_size_md">Добавить позицию</label>
     <FormControl class="form__form-control_spacing" v-model="form.name" label="Название позиции" placeholder="Введите название позиции" />
     <FormControl class="form__form-control_spacing" v-model="form.price" label="Цена" placeholder="Введите цену" type="number" />

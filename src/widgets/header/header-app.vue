@@ -1,17 +1,26 @@
 <script setup lang="ts">
+import { useUser } from '@/entities';
+import { LogoutBtn } from '@/features';
+
+const userStore = useUser();
+
 </script>
 
 <template>
   <header class="header shadow-down flex">
     <div class="header_wrapper flex">
-      <div class="header__block header__block_left text-bold">Brend</div>
+      <div class="header__block header__block_left text-bold">Brand</div>
   
       <nav class="nav flex">
         <RouterLink class="header__nav-link text-medium" to="/">Меню</RouterLink>
-        <RouterLink class="header__nav-link text-medium" to="/add-category">Добавить категорию</RouterLink>
+
+        <RouterLink v-if="userStore.isAuthorized" class="header__nav-link text-medium" to="/add-category">Добавить категорию</RouterLink>
       </nav>
   
-      <div class="header__block header__block_right text-bold">login</div>
+      <div class="header__block header__block_right">
+        <LogoutBtn v-if="userStore.isAuthorized" />
+        <RouterLink v-else class="text-bold text-light" to="/login">Вход</RouterLink>
+      </div>
     </div>
   </header>
 </template>
@@ -56,6 +65,10 @@
   
     &.header__block_right {
       text-align: end;
+
+      a {
+        text-decoration: none;
+      }
     }
   }
 }
