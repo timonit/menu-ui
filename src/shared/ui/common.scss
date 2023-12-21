@@ -1,0 +1,130 @@
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: start;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.items-start {
+  align-items: start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.gap-sm {
+  gap: 1rem;
+}
+
+.gap-medium {
+  gap: 2rem;
+}
+
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-regular {
+  font-weight: 500;
+}
+
+.text-medium {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 800;
+}
+
+.text-light {
+  color: var(--text-color)
+}
+
+.text-dark {
+  color: var(--background-color)
+}
+
+
+.bg-success {
+  background-color: green;
+}
+
+.bg-danger {
+  background-color: red;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-dark {
+  background-color: var(--background-color);
+}
+
+.bg-disabled {
+  background-color: gray;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.w-full {
+  width: 100%;
+}

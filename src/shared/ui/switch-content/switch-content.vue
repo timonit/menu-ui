@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ButtonApp } from '@/shared';
+import { type Component } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     triggerLabel?: string;
+    triggerComponent?: Component;
     cancelLabel?: string;
     show: boolean;
   }>(),
@@ -14,7 +16,6 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{(e: 'update:show', v: boolean): void}>();
-
 </script>
 
 <template>
@@ -27,13 +28,17 @@ const emit = defineEmits<{(e: 'update:show', v: boolean): void}>();
       <slot name="switch-content"></slot>
     </template>
 
-    <ButtonApp v-if="!props.show" :label="props.triggerLabel" @click="emit('update:show', true)" />
-    <ButtonApp v-if="props.show" :label="props.cancelLabel" @click="emit('update:show', false)" />
+    <template v-if="props.triggerComponent && !props.show">
+      <props.triggerComponent class="switcher__trigger" @click="emit('update:show', true)" />
+    </template>
+    <ButtonApp v-if="!props.triggerComponent && !props.show" class="switcher__trigger" :label="props.triggerLabel" @click="emit('update:show', true)" />
+    <ButtonApp v-if="props.show" class="bg-danger" :label="props.cancelLabel" @click="emit('update:show', false)" />
   </div>
 </template>
 
 <style scoped>
-button {
-  margin-left: 0.7em;
+.switcher__trigger {
+  margin: 0 .4em;
+  cursor: pointer;
 }
 </style>

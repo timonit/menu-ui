@@ -1,0 +1,27 @@
+.button {
+  padding: .5em 1em;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    outline: solid 2px white;
+  }
+}
+
+.button-tools {
+  display: flex;
+  flex-direction: row;
+
+  &.button-tools_align_end {
+    justify-content: end;
+  }
+
+  &.button-tools_align_center {
+    justify-content: center;
+  }
+
+  &.button-tools_align_between {
+    justify-content: space-between;
+
+  }
+}

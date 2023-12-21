@@ -22,8 +22,14 @@ const submitHandler = async (event: Event) => {
 </script>
 
 <template>
-  <FormApp @submit="submitHandler">
-    <FormControl v-model="form.description" placeholder="description" />
-    <ButtonApp label="change" type="submit" />
+  <FormApp class="feature-form-horizontal w-full items-start" @submit="submitHandler">
+    <FormControl
+      v-model="form.description"
+      placeholder="Введите описание категории"
+      type="textarea"
+      :rows="5"
+      class="w-full"
+    />
+    <ButtonApp label="Сохранить" type="submit" />
   </FormApp>
 </template>

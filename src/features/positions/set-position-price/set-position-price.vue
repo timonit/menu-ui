@@ -15,15 +15,15 @@ const submitHandler = async (event: Event) => {
   event.preventDefault();
 
   const api = new PositionAPI();
-  const result = await api.changePrice(props.id, form.value.price);
+  const result = await api.changePrice(props.id, Number(form.value.price));
 
   emit('executed', result);
 };
 </script>
 
 <template>
-  <FormApp @submit="submitHandler">
-    <FormControl v-model="form.price" placeholder="price" />
-    <ButtonApp label="change" type="submit" />
+  <FormApp class="feature-form-horizontal" @submit="submitHandler">
+    <FormControl v-model="form.price" placeholder="Введите цену" type="number" />
+    <ButtonApp label="Сохранить" type="submit" />
   </FormApp>
 </template>

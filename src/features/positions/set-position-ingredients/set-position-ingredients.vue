@@ -22,8 +22,8 @@ const submitHandler = async (event: Event) => {
 </script>
 
 <template>
-  <FormApp @submit="submitHandler">
-    <FormControl v-model="form.ingredients" placeholder="ingredients" />
-    <ButtonApp label="change" type="submit" />
+  <FormApp class="feature-form-horizontal" @submit="submitHandler">
+    <FormControl v-model="form.ingredients" placeholder="Введите ингредиенты через запятую (лук, морковь, кортошка и т. д.)" />
+    <ButtonApp label="Сохранить" type="submit" />
   </FormApp>
 </template>

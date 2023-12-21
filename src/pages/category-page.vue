@@ -7,7 +7,9 @@ const categoryID = route.params.categoryID;
 </script>
 
 <template>
-  <main>
+  <main class="page category-page">
     <CategoryView :categoryID="(categoryID as string)" />
   </main>
 </template>
+
+<style src="./page.scss"></style>

@@ -4,9 +4,11 @@ import { HeaderApp } from '@/widgets';
 </script>
 
 <template>
-  <div>
+  <div class="layout">
     <HeaderApp />
   
     <RouterView />
   </div>
 </template>
+
+<style src="./layout.scss"></style>

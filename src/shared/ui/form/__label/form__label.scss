@@ -1,0 +1,30 @@
+.form__label {
+  display: block;
+  font-weight: 500;
+  text-align: start;
+  margin-bottom: 1em;
+  
+  &.form__label_size_sm {
+    font-size: 1.5rem;
+  }
+  
+  &.form__label_size_md {
+    font-size: 2rem;
+  }
+  
+  &.form__label_size_lg {
+    font-size: 2.7rem;
+  }
+
+  &.form__label_align_left {
+    text-align: start;
+  }
+
+  &.form__label_align_right {
+    text-align: end;
+  }
+
+  &.form__label_align_center {
+    text-align: center;
+  }
+}
