@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useUser } from '@/entities';
 import { SetPositionPhoto } from '@/features';
 import { EditBadge } from '@/shared';
 import { type PositionDTO, ButtonApp } from '@/shared';
@@ -12,12 +13,13 @@ const showForm = ref(false);
 watch(props, () => {
   showForm.value = false;
 })
+const userStore = useUser();
 </script>
 
 <template>
   <div class="fieldset__photo relative flex flex-col items-start">
     <ButtonApp
-      v-if="!props.position.photo && !showForm"
+      v-if="!props.position.photo && !showForm && userStore.isAuthorized"
       @click="showForm=!showForm"
       label="Добавить фото"
     >Добавить фото</ButtonApp>
